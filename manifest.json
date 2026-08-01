@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class CubeMovement : MonoBehaviour
+{
+    [Header("Movement Settings")]
+    [Tooltip("Movement speed of the cube.")]
+    public float moveSpeed = 5f;
+
+    void Update()
+    {
+        // Get input from Arrow keys (or WASD)
+        // Horizontal: Left (-1) / Right (+1)
+        // Vertical: Down (-1) / Up (+1)
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        // Calculate the direction vector in 3D space (X and Z axes)
+        Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput);
+
+        // Move the object based on direction, speed, and frame rate independence
+        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+    }
+}
